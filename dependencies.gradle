@@ -1,0 +1,73 @@
+ext {
+    versions = [
+            lifecycleVersion: "2.7.0",
+            androidXCoreVersion: "1.8.0",
+            androidXMaterial3Version: "1.2.0",
+            koinVersion: "2.0.0",
+            jetbrainsKotlinBomVersion: "1.8.0",
+            androidXActivityVersion: "1.5.1",
+            androidXComposeVersion: "1.6.1",
+            retrofit2Version: "2.9.0",
+            rxjava3Version: "3.0.0",
+            okhttp3Version: "4.5.0",
+            junitVersion: "4.13.2",
+            androidXTestJunitVersion: "1.1.5",
+            androidXTestEspressoVersion: "3.5.1",
+    ]
+
+    dependencies {
+        // Production
+
+        // AndroidX Core
+        androidXCoreKtx = "androidx.core:core-ktx:${versions.androidXCoreVersion}"
+        // AndroidX / Lifecyle
+        androidXLifecycleViewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.lifecycleVersion}"
+        androidXLifecycleViewModelCompose = "androidx.lifecycle:lifecycle-viewmodel-compose:${versions.lifecycleVersion}"
+        androidXLifecycleViewModelSavedState = "androidx.lifecycle:lifecycle-viewmodel-savedstate:${versions.lifecycleVersion}"
+        androidXLifecycleLivedataKtx = "androidx.lifecycle:lifecycle-livedata-ktx:${versions.lifecycleVersion}"
+        androidXLifecycleRuntimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:${versions.lifecycleVersion}"
+        androidXLifecycleRuntimeCompose = "androidx.lifecycle:lifecycle-runtime-compose:${versions.lifecycleVersion}"
+
+        // AndroidX Compose
+        androidXActivityCompose = "androidx.activity:activity-compose:${versions.androidXActivityVersion}"
+        androidXComposeUI = "androidx.compose.ui:ui:${versions.androidXComposeVersion}"
+        androidXComposeUIGraphics = "androidx.compose.ui:ui-graphics:${versions.androidXComposeVersion}"
+        androidXComposeUIToolingPreview = "androidx.compose.ui:ui-tooling-preview:${versions.androidXComposeVersion}"
+        androidXComposeMaterial = "androidx.compose.material3:material3:${versions.androidXMaterial3Version}"
+
+        // Koin
+        koinCompose = "io.coil-kt:coil-compose:${versions.koinVersion}"
+
+        // Jetbranins
+        jetbrainKotlinBom = "org.jetbrains.kotlin:kotlin-bom:${versions.jetbrainsKotlinBomVersion}"
+
+        // Retrofit
+        retrofit2 = "com.squareup.retrofit2:retrofit:${versions.retrofit2Version}"
+        retrofit2AdapterRxJava3 = "com.squareup.retrofit2:adapter-rxjava3:${versions.retrofit2Version}"
+        retrofit2ConverterGson = "com.squareup.retrofit2:converter-gson:${versions.retrofit2Version}"
+
+        // Rxjava3
+        rxjavaRxKotlin = "io.reactivex.rxjava3:rxkotlin:${versions.rxjava3Version}"
+        rxjavaRxAndroid = "io.reactivex.rxjava3:rxandroid:${versions.rxjava3Version}"
+        rxjavaRxJava = "io.reactivex.rxjava3:rxjava:${versions.rxjava3Version}"
+
+        // OkHttp3
+        okHttp3Logging = "com.squareup.okhttp3:logging-interceptor:${versions.okhttp3Version}"
+
+        // Unit Testing
+        junit = "junit:junit:${versions.junitVersion}"
+
+        // Android Testing
+        androidXTestJunit = "androidx.test.ext:junit:${versions.androidXTestJunitVersion}"
+        androidXTestImplementation = "androidx.test.espresso:espresso-core:${versions.androidXTestEspressoVersion}"
+        androidXComposeUITestJunit = "androidx.compose.ui:ui-test-junit4:${versions.androidXComposeVersion}"
+
+        // Debug only
+        androidXComposeUITooling = "androidx.compose.ui:ui-tooling:${versions.androidXComposeVersion}"
+        androidXComposeUITestManifest = "androidx.compose.ui:ui-test-manifest:${versions.androidXComposeVersion}"
+    }
+
+//    implementation platform('androidx.compose:compose-bom:2022.10.00')
+//    androidTestImplementation platform('androidx.compose:compose-bom:2022.10.00')
+}
+
