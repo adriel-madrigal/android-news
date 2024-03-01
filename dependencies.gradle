@@ -13,6 +13,7 @@ ext {
             junitVersion: "4.13.2",
             androidXTestJunitVersion: "1.1.5",
             androidXTestEspressoVersion: "3.5.1",
+            daggerHiltVersion: "2.44",
     ]
 
     dependencies {
@@ -35,6 +36,11 @@ ext {
         androidXComposeUIToolingPreview = "androidx.compose.ui:ui-tooling-preview:${versions.androidXComposeVersion}"
         androidXComposeMaterial = "androidx.compose.material3:material3:${versions.androidXMaterial3Version}"
 
+        androidXComposeRuntime = "androidx.compose.runtime:runtime:${versions.androidXComposeVersion}"
+        androidXComposeRuntimeLivedata = "androidx.compose.runtime:runtime-livedata:${versions.androidXComposeVersion}"
+        androidXComposeRuntimeRxJava3 = "androidx.compose.runtime:runtime-rxjava3:${versions.androidXComposeVersion}"
+
+
         // Koin
         koinCompose = "io.coil-kt:coil-compose:${versions.koinVersion}"
 
@@ -51,6 +57,9 @@ ext {
         rxjavaRxAndroid = "io.reactivex.rxjava3:rxandroid:${versions.rxjava3Version}"
         rxjavaRxJava = "io.reactivex.rxjava3:rxjava:${versions.rxjava3Version}"
 
+        // Dagger Hilt
+        daggerHiltAndroid = "com.google.dagger:hilt-android:${versions.daggerHiltVersion}"
+
         // OkHttp3
         okHttp3Logging = "com.squareup.okhttp3:logging-interceptor:${versions.okhttp3Version}"
 
@@ -65,6 +74,9 @@ ext {
         // Debug only
         androidXComposeUITooling = "androidx.compose.ui:ui-tooling:${versions.androidXComposeVersion}"
         androidXComposeUITestManifest = "androidx.compose.ui:ui-test-manifest:${versions.androidXComposeVersion}"
+
+        // Kapt
+        daggerHiltCompiler = "com.google.dagger:hilt-compiler:${versions.daggerHiltVersion}"
     }
 
 //    implementation platform('androidx.compose:compose-bom:2022.10.00')

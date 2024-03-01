@@ -1,6 +1,6 @@
-package com.adrielmadrigal.androidnews.newsapi.model.app
+package com.adrielmadrigal.androidnews.newsapi.data.model
 
-data class ArticleModelApp(
+data class ArticleModel(
     val title: String,
     val description: String,
     val urlToImage: String? = ""

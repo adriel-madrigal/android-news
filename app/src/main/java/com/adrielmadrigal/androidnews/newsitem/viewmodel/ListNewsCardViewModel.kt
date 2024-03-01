@@ -1,33 +1,39 @@
 package com.adrielmadrigal.androidnews.newsitem.viewmodel
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.adrielmadrigal.androidnews.newsapi.services.NewsApiManager
 import com.adrielmadrigal.androidnews.newsapi.services.NewsResult
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.schedulers.Schedulers
-import io.reactivex.rxjava3.subjects.BehaviorSubject
+import dagger.hilt.android.lifecycle.HiltViewModel
+import io.reactivex.rxjava3.disposables.CompositeDisposable
+import javax.inject.Inject
 
-class ListNewsCardViewModel(): ViewModel() {
+@HiltViewModel
+class ListNewsCardViewModel @Inject constructor(
+    private val newsApiManager: NewsApiManager
+    ): ViewModel() {
 
-    private val _newsResult = BehaviorSubject.create<NewsResult>()
-    val newsResult: Observable<NewsResult>
+    private val disposable = CompositeDisposable()
+    private val _newsResult = MutableLiveData<NewsResult>(NewsResult.Loading)
+    val newsResult: LiveData<NewsResult>
         get() = _newsResult
 
     init {
         fetchNews()
     }
+
     fun fetchNews() {
-        _newsResult.onNext(NewsResult.Loading)
-        NewsApiManager.getRandomNews()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ response ->
-                _newsResult.onNext(response)
-                println("Observer is good")
-            }, { error ->
-                _newsResult.onNext(NewsResult.Error("Failed to load news: ${error.message}"))
-                println("Observer is bad")
-            })
+        disposable.add(
+            newsApiManager.fetchRandomNews { result ->
+                println(result)
+                _newsResult.postValue(result)
+            }
+        )
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        disposable.clear()
     }
 }
