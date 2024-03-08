@@ -47,6 +47,19 @@ fun ListNewsCardView(viewModel: ListNewsCardViewModel = viewModel()) {
 
 @Composable
 @Preview
-fun ListNewsCardView_Preview() {
+fun ListNewsCardViewSuccess_Preview() {
+//    val viewModel = ListNewsCardViewModel()
+    ListNewsCardView()
+}
+
+@Composable
+@Preview
+fun ListNewsCardViewLoading_Preview() {
+    ListNewsCardView()
+}
+
+@Composable
+@Preview
+fun ListNewsCardViewError_Preview() {
     ListNewsCardView()
 }

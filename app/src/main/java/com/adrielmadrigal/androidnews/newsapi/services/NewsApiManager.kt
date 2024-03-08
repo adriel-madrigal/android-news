@@ -1,5 +1,6 @@
 package com.adrielmadrigal.androidnews.newsapi.services
 
+import com.adrielmadrigal.androidnews.NewsResultCallback
 import com.adrielmadrigal.androidnews.newsapi.data.responses.NewsModelResponse
 import com.adrielmadrigal.androidnews.newsapi.data.model.NewsModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -17,7 +18,7 @@ class NewsApiManager @Inject constructor(private val newsApiService: NewsApiServ
         const val API_KEY = "aad2c04ffcbf4000833a1d948595f63e"
     }
 
-     fun fetchRandomNews(callback: (NewsResult) -> Unit): Disposable {
+     fun fetchRandomNews(callback: NewsResultCallback): Disposable {
          return newsApiService.fetchRandom(
              "Apple",
              "2024-02-15",

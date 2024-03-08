@@ -3,15 +3,16 @@ package com.adrielmadrigal.androidnews.newsitem.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.adrielmadrigal.androidnews.newsapi.services.NewsApiManager
 import com.adrielmadrigal.androidnews.newsapi.services.NewsResult
+import com.adrielmadrigal.androidnews.newsitem.usecase.impl.DefaultFetchNewsArticlesUseCaseImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.disposables.Disposable
 import javax.inject.Inject
 
 @HiltViewModel
 class ListNewsCardViewModel @Inject constructor(
-    private val newsApiManager: NewsApiManager
+    private val fetchNewsArticlesUseCase: DefaultFetchNewsArticlesUseCaseImpl
     ): ViewModel() {
 
     private val disposable = CompositeDisposable()
@@ -23,9 +24,9 @@ class ListNewsCardViewModel @Inject constructor(
         fetchNews()
     }
 
-    fun fetchNews() {
+    private fun fetchNews() {
         disposable.add(
-            newsApiManager.fetchRandomNews { result ->
+            fetchNewsArticlesUseCase(Unit) { result ->
                 println(result)
                 _newsResult.postValue(result)
             }
