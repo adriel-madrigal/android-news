@@ -1,4 +1,4 @@
-package com.adrielmadrigal.androidnews.newsapi.services
+package com.adrielmadrigal.androidnews.newsapi.services.apiservice
 
 
 import com.adrielmadrigal.androidnews.newsapi.data.responses.NewsModelResponse

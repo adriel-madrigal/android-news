@@ -1,13 +1,13 @@
 package com.adrielmadrigal.androidnews.module
 
-import com.adrielmadrigal.androidnews.newsitem.repository.NewsRepository
+import com.adrielmadrigal.androidnews.BuildConfig
 import com.adrielmadrigal.androidnews.newsitem.usecase.FetchNewsArticlesUseCase
-import com.adrielmadrigal.androidnews.newsitem.usecase.impl.DefaultFetchNewsArticlesUseCaseImpl
+import com.adrielmadrigal.androidnews.newsitem.usecase.impl.ProductionFetchNewsArticlesUseCase
+import com.adrielmadrigal.androidnews.newsitem.usecase.impl.PreviewFetchNewsArticleUseCaseImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import io.reactivex.rxjava3.disposables.Disposable
 import javax.inject.Singleton
 
 @Module
@@ -16,7 +16,15 @@ class UseCaseModule {
 
     @Provides
     @Singleton
-    fun providesFetchNewsArticleUseCase(fetchNewsArticlesUseCase: DefaultFetchNewsArticlesUseCaseImpl): FetchNewsArticlesUseCase<Unit, Disposable> {
-        return fetchNewsArticlesUseCase
+    fun providesFetchNewsUseCase(
+        productionFetchNewsArticlesUseCaseImpl: ProductionFetchNewsArticlesUseCase,
+        previewFetchNewsArticleUseCaseImpl: PreviewFetchNewsArticleUseCaseImpl
+    ): FetchNewsArticlesUseCase {
+
+        return if (BuildConfig.DEBUG) {
+            productionFetchNewsArticlesUseCaseImpl
+        } else {
+            previewFetchNewsArticleUseCaseImpl
+        }
     }
 }

@@ -1,7 +1,7 @@
 package com.adrielmadrigal.androidnews.module
 
-import com.adrielmadrigal.androidnews.newsapi.services.NewsApiManager
-import com.adrielmadrigal.androidnews.newsapi.services.NewsApiService
+import com.adrielmadrigal.androidnews.newsapi.services.manager.impl.ProductionNewsApiManager
+import com.adrielmadrigal.androidnews.newsapi.services.apiservice.NewsApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,7 +15,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class NetworkModule {
+class NetworkLibrariesModule {
 
     @Provides
     @Singleton
@@ -37,7 +37,7 @@ class NetworkModule {
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(NewsApiManager.API_BASE_URL)
+            .baseUrl(ProductionNewsApiManager.API_BASE_URL)
             .client(okHttpClient)
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())

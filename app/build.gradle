@@ -25,11 +25,35 @@ android {
     }
 
     buildTypes {
+        debug {
+            // Configuration for the debug build type
+            buildConfigField "String", "FLAVOR", "\"debug\""
+        }
         release {
+            // Configuration for the release build type
+            buildConfigField "String", "FLAVOR", "\"production\""
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        composeDebug {
+            buildConfigField "String", "FLAVOR", "\"composePreview\""
+            composeOptions {
+                kotlinCompilerExtensionVersion '1.3.2'
+            }
+        }
     }
+
+//    flavorDimensions "appMode"
+//    productFlavors {
+//        production {
+//            dimension "appMode"
+//            applicationIdSuffix ".prod"
+//        }
+//        qa {
+//            dimension "appMode"
+//            applicationIdSuffix ".test"
+//        }
+//    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -39,10 +63,11 @@ android {
     }
     buildFeatures {
         compose true
+        buildConfig true
     }
-    composeOptions {
-        kotlinCompilerExtensionVersion '1.3.2'
-    }
+//    composeOptions {
+//        kotlinCompilerExtensionVersion '1.3.2'
+//    }
     packagingOptions {
         resources {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
