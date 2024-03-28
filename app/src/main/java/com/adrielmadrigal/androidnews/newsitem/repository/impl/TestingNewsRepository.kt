@@ -6,9 +6,6 @@ import io.reactivex.rxjava3.core.Single
 import javax.inject.Inject
 
 class TestingNewsRepository @Inject constructor(): NewsRepository {
-    //    override fun fetchNews(callback: NewsResultCallback): Single<NewsModel> {
-//        TODO("Not yet implemented")
-//    }
     override fun fetchNews(): Single<NewsModel> {
         TODO("Not yet implemented")
     }
