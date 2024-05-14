@@ -4,7 +4,7 @@ ext {
             androidXCoreVersion: "1.8.0",
             androidXMaterial3Version: "1.2.0",
             koinVersion: "2.0.0",
-            jetbrainsKotlinBomVersion: "1.8.0",
+            jetbrainsKotlinBomVersion: "1.7.20",
             androidXActivityVersion: "1.5.1",
             androidXComposeVersion: "1.6.1",
             retrofit2Version: "2.9.0",
@@ -13,7 +13,9 @@ ext {
             junitVersion: "4.13.2",
             androidXTestJunitVersion: "1.1.5",
             androidXTestEspressoVersion: "3.5.1",
-            daggerHiltVersion: "2.44",
+            daggerHiltVersion: "2.51.1",
+            androidXTest: "1.4.0",
+            mockkVersion: "1.13.10"
     ]
 
     dependencies {
@@ -65,11 +67,16 @@ ext {
 
         // Unit Testing
         junit = "junit:junit:${versions.junitVersion}"
+        mockkCore = "io.mockk:mockk:${versions.mockkVersion}"
 
         // Android Testing
         androidXTestJunit = "androidx.test.ext:junit:${versions.androidXTestJunitVersion}"
-        androidXTestImplementation = "androidx.test.espresso:espresso-core:${versions.androidXTestEspressoVersion}"
+        androidXTestEspressoCore = "androidx.test.espresso:espresso-core:${versions.androidXTestEspressoVersion}"
         androidXComposeUITestJunit = "androidx.compose.ui:ui-test-junit4:${versions.androidXComposeVersion}"
+        androidXTestRules = "androidx.test:rules:${versions.androidXTest}"
+        androidXTestRunner = "androidx.test:runner:${versions.androidXTest}"
+        mockkAndroid = "io.mockk:mockk-android:${versions.mockkVersion}"
+        mockkAgent = "io.mockk:mockk-agent:${versions.mockkVersion}"
 
         // Debug only
         androidXComposeUITooling = "androidx.compose.ui:ui-tooling:${versions.androidXComposeVersion}"
@@ -77,6 +84,9 @@ ext {
 
         // Kapt
         daggerHiltCompiler = "com.google.dagger:hilt-compiler:${versions.daggerHiltVersion}"
+        daggerHiltAndroidTesting = "com.google.dagger:hilt-android-compiler:${versions.daggerHiltVersion}"
+        daggerHiltAndroidCompiler = "com.google.dagger:hilt-android-compiler:${versions.daggerHiltVersion}"
+
     }
 
 //    implementation platform('androidx.compose:compose-bom:2022.10.00')

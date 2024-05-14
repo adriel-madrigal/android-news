@@ -42,24 +42,12 @@ android {
             }
         }
     }
-
-//    flavorDimensions "appMode"
-//    productFlavors {
-//        production {
-//            dimension "appMode"
-//            applicationIdSuffix ".prod"
-//        }
-//        qa {
-//            dimension "appMode"
-//            applicationIdSuffix ".test"
-//        }
-//    }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '17'
     }
     buildFeatures {
         compose true
@@ -84,7 +72,8 @@ dependencies {
     implementation androidXLifecycleRuntimeKtx
     implementation androidXLifecycleRuntimeCompose
     implementation koinCompose
-    implementation platform(jetbrainKotlinBom)
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.9.10" // Kotlin version for stdlib
+//    implementation platform(jetbrainKotlinBom)
     implementation androidXActivityCompose
     implementation androidXComposeUI
     implementation androidXComposeUIGraphics
@@ -100,22 +89,41 @@ dependencies {
     implementation rxjavaRxAndroid
     implementation rxjavaRxJava
     implementation okHttp3Logging
-    implementation daggerHiltAndroid
+//    implementation daggerHiltAndroid
 
     testImplementation junit
     testImplementation rxjavaRxJava
     testImplementation rxjavaRxAndroid
+    testImplementation mockkCore
+    testImplementation mockkAndroid
+    testImplementation mockkAgent
 
     androidTestImplementation androidXTestJunit
-    androidTestImplementation androidXTestImplementation
+    androidTestImplementation androidXTestEspressoCore
     androidTestImplementation androidXComposeUITestJunit
+    androidTestImplementation androidXTestRules
+    androidTestImplementation androidXTestRunner
+//    androidTestImplementation daggerHiltAndroidTesting
 
     debugImplementation androidXComposeUITooling
     debugImplementation androidXComposeUITestManifest
 
-    kapt daggerHiltCompiler
+//    kapt daggerHiltCompiler
+//    kaptAndroidTest daggerHiltAndroidCompiler
+
 //    implementation platform('org.jetbrains.kotlin:kotlin-bom:1.8.0')
 //    implementation platform('androidx.compose:compose-bom:2022.10.00')
+
+    implementation 'com.google.dagger:hilt-android:2.51.1'
+    kapt 'com.google.dagger:hilt-compiler:2.51.1'
+
+    // For instrumentation tests
+    androidTestImplementation  'com.google.dagger:hilt-android-testing:2.51.1'
+    kaptAndroidTest 'com.google.dagger:hilt-compiler:2.51.1'
+
+    // For local unit tests
+    testImplementation 'com.google.dagger:hilt-android-testing:2.51.1'
+    kaptTest 'com.google.dagger:hilt-compiler:2.51.1'
 }
 
 kapt {

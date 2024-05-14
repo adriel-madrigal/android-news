@@ -10,6 +10,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
+import org.jetbrains.annotations.VisibleForTesting
 import javax.inject.Inject
 
 @HiltViewModel
@@ -26,7 +27,8 @@ class ListNewsCardViewModel @Inject constructor(
         fetchNews()
     }
 
-    private fun fetchNews() {
+    @VisibleForTesting
+    fun fetchNews() {
         disposable.add(
             fetchNewsArticlesUseCase()
                 .flatMap { newsModel ->
