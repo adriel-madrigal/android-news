@@ -14,6 +14,7 @@ ext {
             androidXTestJunitVersion: "1.1.5",
             androidXTestEspressoVersion: "3.5.1",
             daggerHiltVersion: "2.44",
+            navigationVersion: "2.7.7",
     ]
 
     dependencies {
@@ -40,6 +41,10 @@ ext {
         androidXComposeRuntimeLivedata = "androidx.compose.runtime:runtime-livedata:${versions.androidXComposeVersion}"
         androidXComposeRuntimeRxJava3 = "androidx.compose.runtime:runtime-rxjava3:${versions.androidXComposeVersion}"
 
+        // AndroidX Navigation
+        androidXNavigationFragmentKtx = "androidx.navigation:navigation-fragment:${versions.navigationVersion}"
+        androidXNavigationUIKtx = "androidx.navigation:navigation-ui:${versions.navigationVersion}"
+        androidXNavigationCompose = "androidx.navigation:navigation-compose:${versions.navigationVersion}"
 
         // Koin
         koinCompose = "io.coil-kt:coil-compose:${versions.koinVersion}"
