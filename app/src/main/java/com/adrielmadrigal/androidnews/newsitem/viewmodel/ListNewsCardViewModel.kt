@@ -30,6 +30,7 @@ class ListNewsCardViewModel @Inject constructor(
         disposable.add(
             fetchNewsArticlesUseCase()
                 .flatMap { newsModel ->
+                    println(newsModel)
                     val filteredArticles = newsModel.articles.filter { articleModel ->
                         articleModel.title != "[Removed]"
                     }

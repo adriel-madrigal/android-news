@@ -8,7 +8,7 @@ import androidx.compose.runtime.remember
 import io.reactivex.rxjava3.core.Observable
 
 @Composable
-fun <T> Observable<T>.toComposeState(): State<T?> {
+fun <T : Any> Observable<T>.toComposeState(): State<T?> {
     val state = remember { mutableStateOf<T?>(null) }
 
     DisposableEffect(this) {

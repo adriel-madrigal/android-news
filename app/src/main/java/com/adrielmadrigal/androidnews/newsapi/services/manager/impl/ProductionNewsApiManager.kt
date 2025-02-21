@@ -22,7 +22,7 @@ class ProductionNewsApiManager @Inject constructor(
      override fun fetchRandomNews(): Single<NewsModel> {
          return newsApiService.fetchRandom(
              "Apple",
-             "2025-02-15",
+             "2025-02-16",
              "popularity",
              API_KEY,
              15)
