@@ -20,11 +20,11 @@ class UseCaseModule {
         productionFetchNewsArticlesUseCaseImpl: ProductionFetchNewsArticlesUseCase,
         previewFetchNewsArticleUseCaseImpl: PreviewFetchNewsArticleUseCaseImpl
     ): FetchNewsArticlesUseCase {
-
-        return if (BuildConfig.DEBUG) {
-            productionFetchNewsArticlesUseCaseImpl
-        } else {
-            previewFetchNewsArticleUseCaseImpl
-        }
+        return productionFetchNewsArticlesUseCaseImpl
+//        return if (BuildConfig.DEBUG) {
+//            productionFetchNewsArticlesUseCaseImpl
+//        } else {
+//            previewFetchNewsArticleUseCaseImpl
+//        }
     }
 }
