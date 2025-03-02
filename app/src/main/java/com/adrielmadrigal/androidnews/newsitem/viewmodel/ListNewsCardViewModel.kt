@@ -1,15 +1,15 @@
 package com.adrielmadrigal.androidnews.newsitem.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.adrielmadrigal.androidnews.newsapi.data.model.NewsModel
-import com.adrielmadrigal.androidnews.newsapi.services.NewsResult
 import com.adrielmadrigal.androidnews.newsitem.usecase.FetchNewsArticlesUseCase
+import com.adrielmadrigal.androidnews.newsitem.view.ListNewsCardUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import javax.inject.Inject
 
 @HiltViewModel
@@ -18,15 +18,19 @@ class ListNewsCardViewModel @Inject constructor(
     ): ViewModel() {
 
     private val disposable = CompositeDisposable()
-    private val _newsResult = MutableLiveData<NewsResult>(NewsResult.Loading)
-    val newsResult: LiveData<NewsResult>
-        get() = _newsResult
+    private val mutableUiState = MutableStateFlow<ListNewsCardUiState>(ListNewsCardUiState.Idle)
+    val uiState = mutableUiState.asStateFlow()
+
 
     init {
         fetchNews()
     }
 
     private fun fetchNews() {
+
+        mutableUiState.update {
+            ListNewsCardUiState.Loading
+        }
         disposable.add(
             fetchNewsArticlesUseCase()
                 .flatMap { newsModel ->
@@ -45,11 +49,15 @@ class ListNewsCardViewModel @Inject constructor(
     }
 
     private fun handleSuccess(newsModel: NewsModel) {
-        _newsResult.postValue(NewsResult.Success(newsModel))
+        mutableUiState.update {
+            ListNewsCardUiState.Success(newsModel)
+        }
     }
 
     private fun handleError(errorMessage: String) {
-        _newsResult.postValue(NewsResult.Error(errorMessage))
+        mutableUiState.update {
+            ListNewsCardUiState.Error
+        }
     }
 
     override fun onCleared() {
