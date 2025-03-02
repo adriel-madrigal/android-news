@@ -49,14 +49,12 @@ class ListNewsCardViewModel @Inject constructor(
     }
 
     private fun handleSuccess(newsModel: NewsModel) {
-//        _newsResult.postValue(NewsResult.Success(newsModel))
         mutableUiState.update {
             ListNewsCardUiState.Success(newsModel)
         }
     }
 
     private fun handleError(errorMessage: String) {
-//        _newsResult.postValue(NewsResult.Error(errorMessage))
         mutableUiState.update {
             ListNewsCardUiState.Error
         }
