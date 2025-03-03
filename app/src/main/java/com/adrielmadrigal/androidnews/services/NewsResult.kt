@@ -1,9 +1,9 @@
-package com.adrielmadrigal.androidnews.newsapi.services
+package com.adrielmadrigal.androidnews.services
 
-import com.adrielmadrigal.androidnews.newsapi.data.model.NewsModel
+import com.adrielmadrigal.androidnews.domain.models.FullNews
 
 sealed class NewsResult {
-    data class Success(val newsResponse: NewsModel): NewsResult()
+    data class Success(val newsResponse: FullNews): NewsResult()
     data class Error(val errorMessage: String): NewsResult()
     object Loading: NewsResult()
 }

@@ -1,4 +1,4 @@
-package com.adrielmadrigal.androidnews.newsitem.viewmodel
+package com.adrielmadrigal.androidnews.presentation.viewmodels
 
 import androidx.lifecycle.ViewModel
 

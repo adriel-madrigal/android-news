@@ -1,9 +1,9 @@
-package com.adrielmadrigal.androidnews.newsitem.view
+package com.adrielmadrigal.androidnews.presentation.previewparameters
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
-import com.adrielmadrigal.androidnews.newsapi.data.model.ArticleModel
-import com.adrielmadrigal.androidnews.newsapi.data.model.NewsModel
-import com.adrielmadrigal.androidnews.newsapi.services.NewsResult
+import com.adrielmadrigal.androidnews.domain.models.FullNews
+import com.adrielmadrigal.androidnews.domain.models.NewsArticle
+import com.adrielmadrigal.androidnews.presentation.uistates.ListNewsCardUiState
 
 class ListNewsCardUiStatePreviewParameterProvider: PreviewParameterProvider<ListNewsCardUiState> {
     override val values: Sequence<ListNewsCardUiState> = sequenceOf(
@@ -11,12 +11,12 @@ class ListNewsCardUiStatePreviewParameterProvider: PreviewParameterProvider<List
         ListNewsCardUiState.Loading,
         ListNewsCardUiState.Error,
         ListNewsCardUiState.Success(
-            NewsModel("status", 1,emptyList())
+            FullNews("status", 1,emptyList())
         ),
         ListNewsCardUiState.Success(
-            NewsModel("status", 1,
+            FullNews("status", 1,
                 listOf(
-                    ArticleModel(
+                    NewsArticle(
                         "title",
                         "description",
                         "https://picsum.photos/100/200",
@@ -26,27 +26,27 @@ class ListNewsCardUiStatePreviewParameterProvider: PreviewParameterProvider<List
             )
         ),
         ListNewsCardUiState.Success(
-            NewsModel("status", 1,
+            FullNews("status", 1,
                 listOf(
-                    ArticleModel(
+                    NewsArticle(
                         "title",
                         "description",
                         "https://picsum.photos/100/200",
                         "sourceName"
                     ),
-                    ArticleModel(
+                    NewsArticle(
                         "title",
                         "description",
                         "https://picsum.photos/100/200",
                         "sourceName"
                     ),
-                    ArticleModel(
+                    NewsArticle(
                         "title",
                         "description",
                         "https://picsum.photos/100/200",
                         "sourceName"
                     ),
-                    ArticleModel(
+                    NewsArticle(
                         "title",
                         "description",
                         "https://picsum.photos/100/200",

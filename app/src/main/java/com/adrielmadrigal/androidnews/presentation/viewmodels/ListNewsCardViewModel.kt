@@ -1,9 +1,9 @@
-package com.adrielmadrigal.androidnews.newsitem.viewmodel
+package com.adrielmadrigal.androidnews.presentation.viewmodels
 
 import androidx.lifecycle.ViewModel
-import com.adrielmadrigal.androidnews.newsapi.data.model.NewsModel
-import com.adrielmadrigal.androidnews.newsitem.usecase.FetchNewsArticlesUseCase
-import com.adrielmadrigal.androidnews.newsitem.view.ListNewsCardUiState
+import com.adrielmadrigal.androidnews.domain.models.FullNews
+import com.adrielmadrigal.androidnews.domain.usecases.FetchNewsArticlesUseCase
+import com.adrielmadrigal.androidnews.presentation.uistates.ListNewsCardUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -33,24 +33,24 @@ class ListNewsCardViewModel @Inject constructor(
         }
         disposable.add(
             fetchNewsArticlesUseCase()
-                .flatMap { newsModel ->
-                    println(newsModel)
-                    val filteredArticles = newsModel.articles.filter { articleModel ->
+                .flatMap { fullNews ->
+                    println(fullNews)
+                    val filteredArticles = fullNews.articles.filter { articleModel ->
                         articleModel.title != "[Removed]"
                     }
-                    Single.just(newsModel.copy(articles = filteredArticles))
+                    Single.just(fullNews.copy(articles = filteredArticles))
                 }
-                .subscribe({ newsModel ->
-                    handleSuccess(newsModel)
+                .subscribe({ fullNews ->
+                    handleSuccess(fullNews)
                 }, { throwable ->
                     handleError(throwable.message ?: "Unknown error")
                 })
         )
     }
 
-    private fun handleSuccess(newsModel: NewsModel) {
+    private fun handleSuccess(fullNews: FullNews) {
         mutableUiState.update {
-            ListNewsCardUiState.Success(newsModel)
+            ListNewsCardUiState.Success(fullNews)
         }
     }
 

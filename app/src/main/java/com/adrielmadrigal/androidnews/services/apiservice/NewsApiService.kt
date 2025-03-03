@@ -1,15 +1,8 @@
-package com.adrielmadrigal.androidnews.newsapi.services.apiservice
+package com.adrielmadrigal.androidnews.services.apiservice
 
-
-import com.adrielmadrigal.androidnews.newsapi.data.responses.NewsModelResponse
+import com.adrielmadrigal.androidnews.data.models.dtos.FullNewsDto
 import io.reactivex.rxjava3.core.Single
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Call
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -21,5 +14,5 @@ interface NewsApiService {
         @Query("sortBy") sortBy: String,
         @Query("apiKey") apiKey: String,
         @Query("pageSize") pageSize: Int
-    ): Single<Response<NewsModelResponse>>
+    ): Single<Response<FullNewsDto>>
 }

@@ -1,12 +1,11 @@
-package com.adrielmadrigal.androidnews.newsitem.view
+package com.adrielmadrigal.androidnews.presentation.uistates
 
-import com.adrielmadrigal.androidnews.newsapi.data.model.NewsModel
-import com.adrielmadrigal.androidnews.newsapi.services.NewsResult
+import com.adrielmadrigal.androidnews.domain.models.FullNews
 
 sealed class ListNewsCardUiState {
     data object Idle: ListNewsCardUiState()
     data object Loading: ListNewsCardUiState()
-    data class Success(val newsModel: NewsModel): ListNewsCardUiState()
+    data class Success(val fullNews: FullNews): ListNewsCardUiState()
     data object Error: ListNewsCardUiState()
 
 }

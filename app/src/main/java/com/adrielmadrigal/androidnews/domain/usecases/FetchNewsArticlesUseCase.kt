@@ -1,6 +1,6 @@
-package com.adrielmadrigal.androidnews.newsitem.usecase
+package com.adrielmadrigal.androidnews.domain.usecases
 
-import com.adrielmadrigal.androidnews.newsapi.data.model.NewsModel
+import com.adrielmadrigal.androidnews.domain.models.FullNews
 import io.reactivex.rxjava3.core.Single
 
 /**
@@ -12,5 +12,5 @@ interface FetchNewsArticlesUseCase {
      * Overrides the invoke Kotlin function to retrieve the News through the NewsRepository
      * @return Single Observable of the NewsModel
      */
-    operator fun invoke(): Single<NewsModel>
+    operator fun invoke(): Single<FullNews>
 }
