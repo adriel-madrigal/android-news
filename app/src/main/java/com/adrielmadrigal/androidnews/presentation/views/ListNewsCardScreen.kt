@@ -1,4 +1,4 @@
-package com.adrielmadrigal.androidnews.newsitem.view
+package com.adrielmadrigal.androidnews.presentation.views
 
 import android.content.res.Configuration.UI_MODE_NIGHT_NO
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
@@ -15,8 +15,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.adrielmadrigal.androidnews.newsapi.data.model.NewsModel
-import com.adrielmadrigal.androidnews.newsitem.viewmodel.ListNewsCardViewModel
+import com.adrielmadrigal.androidnews.domain.models.FullNews
+import com.adrielmadrigal.androidnews.presentation.previewparameters.ListNewsCardUiStatePreviewParameterProvider
+import com.adrielmadrigal.androidnews.presentation.uistates.ListNewsCardUiState
+import com.adrielmadrigal.androidnews.presentation.viewmodels.ListNewsCardViewModel
 
 @Composable
 fun ListNewsCardScreen(
@@ -49,7 +51,7 @@ fun ListNewsCardContent(
             Text(text = "Error couldn't find the news")
         }
         is ListNewsCardUiState.Success -> {
-            val newsModel: NewsModel = uiState.newsModel
+            val newsModel: FullNews = uiState.fullNews
             Column(
                 modifier = Modifier.verticalScroll(rememberScrollState())
             ) {

@@ -3,7 +3,7 @@ package com.adrielmadrigal.androidnews
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.adrielmadrigal.androidnews.newsitem.view.ListNewsCardScreen
+import com.adrielmadrigal.androidnews.presentation.views.ListNewsCardScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

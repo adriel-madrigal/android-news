@@ -1,9 +1,9 @@
-package com.adrielmadrigal.androidnews.newsapi.data.model
+package com.adrielmadrigal.androidnews.domain.models
 
-data class NewsModel(
+data class FullNews(
     val status: String,
     val totalResults: Int,
-    val articles: List<ArticleModel>
+    val articles: List<NewsArticle>
 ) {
     override fun toString(): String {
         val stringBuilder = StringBuilder()

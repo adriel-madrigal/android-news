@@ -1,6 +1,6 @@
-package com.adrielmadrigal.androidnews.newsitem.repository
+package com.adrielmadrigal.androidnews.domain.repository
 
-import com.adrielmadrigal.androidnews.newsapi.data.model.NewsModel
+import com.adrielmadrigal.androidnews.domain.models.FullNews
 import io.reactivex.rxjava3.core.Single
 
 /**
@@ -11,5 +11,5 @@ interface NewsRepository {
      * Retrieves a Single Observable of the NewsModel through the News API Manager
     * @return Single Observable of the NewsModel
     * */
-    fun fetchNews(): Single<NewsModel>
+    fun fetchNews(): Single<FullNews>
 }

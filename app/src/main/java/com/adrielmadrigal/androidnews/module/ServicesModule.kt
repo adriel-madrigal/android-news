@@ -1,8 +1,8 @@
 package com.adrielmadrigal.androidnews.module
 
-import com.adrielmadrigal.androidnews.newsapi.services.apiservice.NewsApiService
-import com.adrielmadrigal.androidnews.newsapi.services.manager.NewsApiManager
-import com.adrielmadrigal.androidnews.newsapi.services.manager.impl.ProductionNewsApiManager
+import com.adrielmadrigal.androidnews.services.apiservice.NewsApiService
+import com.adrielmadrigal.androidnews.services.manager.NewsApiManager
+import com.adrielmadrigal.androidnews.services.manager.impl.ProductionNewsApiManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

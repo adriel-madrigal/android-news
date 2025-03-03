@@ -1,15 +1,15 @@
-package com.adrielmadrigal.androidnews.newsapi.data.responses
+package com.adrielmadrigal.androidnews.data.models.dtos
 
-import com.adrielmadrigal.androidnews.newsapi.data.model.NewsModel
+import com.adrielmadrigal.androidnews.domain.models.FullNews
 
-data class NewsModelResponse(
+data class FullNewsDto(
     val status: String,
     val totalResults: Int,
-    val articles: List<ArticleModelResponse>
+    val articles: List<NewsArticleDto>
 ) {
-    fun toNews(): NewsModel {
+    fun toNews(): FullNews {
         val articlesModelApp = articles.map { articleModelResponse -> articleModelResponse.toArticle() }
-        return NewsModel(
+        return FullNews(
             status = status,
             totalResults = totalResults,
             articles = articlesModelApp
