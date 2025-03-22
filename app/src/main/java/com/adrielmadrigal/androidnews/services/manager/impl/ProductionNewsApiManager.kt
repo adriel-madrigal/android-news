@@ -5,7 +5,8 @@ import com.adrielmadrigal.androidnews.domain.models.FullNews
 import com.adrielmadrigal.androidnews.services.NewsResult
 import com.adrielmadrigal.androidnews.services.apiservice.NewsApiService
 import com.adrielmadrigal.androidnews.services.manager.NewsApiManager
-import io.reactivex.rxjava3.core.Single
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import retrofit2.Response
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -13,27 +14,27 @@ import javax.inject.Singleton
 @Singleton
 class ProductionNewsApiManager @Inject constructor(
     private val newsApiService: NewsApiService
-    ): NewsApiManager {
+): NewsApiManager {
     companion object {
         const val API_BASE_URL = "https://newsapi.org/v2/"
         const val API_KEY = "aad2c04ffcbf4000833a1d948595f63e"
     }
 
-     override fun fetchRandomNews(): Single<FullNews> {
-         return newsApiService.fetchRandom(
-             "Apple",
-             "2025-02-28",
-             "popularity",
-             API_KEY,
-             15)
-             .map { response ->
-                 if (response.isSuccessful) {
-                     val body: FullNewsDto? = response.body()
-                     body?.toNews() ?: throw RuntimeException("Failed to fetch news: Response body is null")
-                 } else {
-                     throw RuntimeException("Failed to fetch news: ${response.code()}")
-                 }
+     override suspend fun fetchRandomNews(): FullNews {
+         return withContext(Dispatchers.IO) {
+             val result = newsApiService.fetchRandom(
+                 "Apple",
+                 "2025-03-21",
+                 "popularity",
+                 API_KEY,
+                 15)
+             if (result.isSuccessful) {
+                 val body: FullNewsDto? = result.body()
+                 body?.toNews() ?: throw RuntimeException("Failed to fetch news: Response body is null")
+             } else {
+                 throw RuntimeException("Failed to fetch news: ${result.code()}")
              }
+         }
     }
 
     override fun mapResponseToNewsResult(response: Response<FullNewsDto>): NewsResult {
