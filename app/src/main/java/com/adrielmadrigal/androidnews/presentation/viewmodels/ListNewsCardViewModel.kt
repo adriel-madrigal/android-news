@@ -40,23 +40,6 @@ class ListNewsCardViewModel @Inject constructor(
                 ListNewsCardUiState.Success(filteredNews)
             }
         }
-
-
-//        disposable.add(
-//            fetchNewsArticlesUseCase()
-//                .flatMap { fullNews ->
-//                    println(fullNews)
-//                    val filteredArticles = fullNews.articles.filter { articleModel ->
-//                        articleModel.title != "[Removed]"
-//                    }
-//                    Single.just(fullNews.copy(articles = filteredArticles))
-//                }
-//                .subscribe({ fullNews ->
-//                    handleSuccess(fullNews)
-//                }, { throwable ->
-//                    handleError(throwable.message ?: "Unknown error")
-//                })
-//        )
     }
 
     private fun handleSuccess(fullNews: FullNews) {
