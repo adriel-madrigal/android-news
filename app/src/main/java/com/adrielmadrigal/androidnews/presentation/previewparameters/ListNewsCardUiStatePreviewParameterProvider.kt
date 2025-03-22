@@ -9,7 +9,7 @@ class ListNewsCardUiStatePreviewParameterProvider: PreviewParameterProvider<List
     override val values: Sequence<ListNewsCardUiState> = sequenceOf(
         ListNewsCardUiState.Idle,
         ListNewsCardUiState.Loading,
-        ListNewsCardUiState.Error,
+        ListNewsCardUiState.Error("Fetch was not successful"),
         ListNewsCardUiState.Success(
             FullNews("status", 1,emptyList())
         ),

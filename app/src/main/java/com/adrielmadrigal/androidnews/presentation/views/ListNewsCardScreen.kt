@@ -46,9 +46,10 @@ fun ListNewsCardContent(
         ListNewsCardUiState.Loading -> {
             Text(text = "Loading")
         }
-        ListNewsCardUiState.Error -> {
+        is ListNewsCardUiState.Error -> {
+            val errorMessage = uiState.errorMessage
             Text(text = "Error")
-            Text(text = "Error couldn't find the news")
+            Text(text = errorMessage)
         }
         is ListNewsCardUiState.Success -> {
             val newsModel: FullNews = uiState.fullNews
