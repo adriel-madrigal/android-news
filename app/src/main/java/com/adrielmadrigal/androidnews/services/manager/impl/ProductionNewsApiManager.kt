@@ -20,7 +20,7 @@ class ProductionNewsApiManager @Inject constructor(
         const val API_KEY = "aad2c04ffcbf4000833a1d948595f63e"
     }
 
-     override suspend fun fetchRandomNews(): FullNews {
+     override suspend fun fetchRandomNews(): NewsResult {
          return withContext(Dispatchers.IO) {
              val result = newsApiService.fetchRandom(
                  "Apple",
@@ -29,10 +29,15 @@ class ProductionNewsApiManager @Inject constructor(
                  API_KEY,
                  15)
              if (result.isSuccessful) {
-                 val body: FullNewsDto? = result.body()
-                 body?.toNews() ?: throw RuntimeException("Failed to fetch news: Response body is null")
+                 val newsDao: FullNewsDto? = result.body()
+                 val news = newsDao?.toNews()
+                 if (news == null) {
+                     NewsResult.Error("Failed request: Response body is null")
+                 } else {
+                    NewsResult.Success(news)
+                 }
              } else {
-                 throw RuntimeException("Failed to fetch news: ${result.code()}")
+                 NewsResult.Error("Failed to fetch news: ${result.code()}")
              }
          }
     }

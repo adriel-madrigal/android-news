@@ -6,6 +6,6 @@ sealed class ListNewsCardUiState {
     data object Idle: ListNewsCardUiState()
     data object Loading: ListNewsCardUiState()
     data class Success(val fullNews: FullNews): ListNewsCardUiState()
-    data object Error: ListNewsCardUiState()
+    data class Error(val errorMessage: String): ListNewsCardUiState()
 
 }
