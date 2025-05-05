@@ -74,8 +74,12 @@ dependencies {
     implementation(libs.okhttp3.logging)
     implementation(libs.dagger.hilt.android)
     implementation(libs.hilt.navigation.compose)
+    implementation(libs.coroutines.core)
 
     testImplementation(libs.junit)
+    testImplementation(libs.coroutines.core)
+    testImplementation(libs.coroutines.test)
+    testImplementation(libs.mockk)
 
     androidTestImplementation(libs.androidx.test.junit)
     androidTestImplementation(libs.androidx.test.implementation)

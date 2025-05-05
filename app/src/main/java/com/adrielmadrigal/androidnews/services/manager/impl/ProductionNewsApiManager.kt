@@ -24,7 +24,7 @@ class ProductionNewsApiManager @Inject constructor(
          return withContext(Dispatchers.IO) {
              val result = newsApiService.fetchRandom(
                  "Apple",
-                 "2025-03-21",
+                 "2025-05-04",
                  "popularity",
                  API_KEY,
                  15)
@@ -42,20 +42,20 @@ class ProductionNewsApiManager @Inject constructor(
          }
     }
 
-    override fun mapResponseToNewsResult(response: Response<FullNewsDto>): NewsResult {
-        return when (response.code()) {
-            in 200..299 -> {
-                val body = response.body()
-                if (body != null) {
-                    val newsModelApp: FullNews = body.toNews()
-                    NewsResult.Success(newsModelApp)
-                } else {
-                    NewsResult.Error("Failed request: Response body is null")
-                }
-            }
-            in 400..499 -> NewsResult.Error("Client error: ${response.code()}")
-            in 500..599 -> NewsResult.Error("Server error: ${response.code()}")
-            else -> NewsResult.Error("Unexpected error: ${response.code()}")
-        }
-    }
+//    override fun mapResponseToNewsResult(response: Response<FullNewsDto>): NewsResult {
+//        return when (response.code()) {
+//            in 200..299 -> {
+//                val body = response.body()
+//                if (body != null) {
+//                    val newsModelApp: FullNews = body.toNews()
+//                    NewsResult.Success(newsModelApp)
+//                } else {
+//                    NewsResult.Error("Failed request: Response body is null")
+//                }
+//            }
+//            in 400..499 -> NewsResult.Error("Client error: ${response.code()}")
+//            in 500..599 -> NewsResult.Error("Server error: ${response.code()}")
+//            else -> NewsResult.Error("Unexpected error: ${response.code()}")
+//        }
+//    }
 }

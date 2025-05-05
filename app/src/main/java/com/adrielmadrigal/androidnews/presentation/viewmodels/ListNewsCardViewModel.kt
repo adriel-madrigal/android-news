@@ -1,5 +1,6 @@
 package com.adrielmadrigal.androidnews.presentation.viewmodels
 
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.adrielmadrigal.androidnews.domain.models.FullNews
@@ -26,7 +27,7 @@ class ListNewsCardViewModel @Inject constructor(
         fetchNews()
     }
 
-    private fun fetchNews() {
+    fun fetchNews() {
 
         viewModelScope.launch {
             mutableUiState.update {
@@ -41,6 +42,7 @@ class ListNewsCardViewModel @Inject constructor(
         }
     }
 
+    @VisibleForTesting
     private fun handleSuccess(fullNews: FullNews) {
         val filteredNewsArticles = fullNews.articles.filter { newsArticle: NewsArticle ->
             newsArticle.title != "[Removed]"
@@ -52,6 +54,7 @@ class ListNewsCardViewModel @Inject constructor(
         }
     }
 
+    @VisibleForTesting
     private fun handleError(errorMessage: String) {
         mutableUiState.update {
             ListNewsCardUiState.Error(errorMessage)
