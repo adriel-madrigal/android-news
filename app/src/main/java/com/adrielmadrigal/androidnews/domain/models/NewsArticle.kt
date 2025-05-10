@@ -3,7 +3,7 @@ package com.adrielmadrigal.androidnews.domain.models
 data class NewsArticle(
     val title: String,
     val description: String,
-    val urlToImage: String?,
+    val urlToImage: Any?,
     val sourceName: String
 ) {
     override fun toString(): String {
