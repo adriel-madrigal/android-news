@@ -1,7 +1,7 @@
 package com.adrielmadrigal.androidnews.module
 
 import com.adrielmadrigal.androidnews.services.apiservice.NewsApiService
-import com.adrielmadrigal.androidnews.services.manager.impl.ProductionNewsApiManager
+import com.adrielmadrigal.androidnews.services.manager.impl.DefaultNewsApiManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -37,7 +37,7 @@ class NetworkLibrariesModule {
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(ProductionNewsApiManager.API_BASE_URL)
+            .baseUrl(DefaultNewsApiManager.API_BASE_URL)
             .client(okHttpClient)
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())

@@ -12,7 +12,7 @@ import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Test
 
-class ProductionFetchNewsArticlesUseCaseTest {
+class DefaultFetchNewsArticlesUseCaseTest {
 
     @MockK
     private lateinit var mockNewsRepository: NewsRepository
@@ -30,19 +30,19 @@ class ProductionFetchNewsArticlesUseCaseTest {
     @Test
     fun `given newsRepository when create a ProductionFetchNewsArticlesUseCase then return ProductionFetchNewsArticlesUseCase is not null`() {
         // When
-        val productionFetchNewsArticlesUseCase = ProductionFetchNewsArticlesUseCase(mockNewsRepository)
+        val defaultFetchNewsArticlesUseCase = DefaultFetchNewsArticlesUseCase(mockNewsRepository)
 
         // Then
-        assertNotNull(productionFetchNewsArticlesUseCase)
+        assertNotNull(defaultFetchNewsArticlesUseCase)
     }
 
     @Test
     fun `given a ProductionFetchNewsArticlesUseCase when invoke is called then return NewsResult`() = runTest {
         // Given
-        val productionFetchNewsArticlesUseCase = ProductionFetchNewsArticlesUseCase(mockNewsRepository)
+        val defaultFetchNewsArticlesUseCase = DefaultFetchNewsArticlesUseCase(mockNewsRepository)
 
         // When
-        val result = productionFetchNewsArticlesUseCase()
+        val result = defaultFetchNewsArticlesUseCase()
 
         // Then
         assertEquals(NewsResult.Success(fullNews), result)

@@ -10,7 +10,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class ProductionNewsApiManager @Inject constructor(
+class DefaultNewsApiManager @Inject constructor(
     private val newsApiService: NewsApiService
 ): NewsApiManager {
     companion object {

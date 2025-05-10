@@ -5,7 +5,7 @@ import com.adrielmadrigal.androidnews.domain.usecases.FetchNewsArticlesUseCase
 import com.adrielmadrigal.androidnews.services.NewsResult
 import javax.inject.Inject
 
-class ProductionFetchNewsArticlesUseCase @Inject constructor(
+class DefaultFetchNewsArticlesUseCase @Inject constructor(
     private val newsRepository: NewsRepository
 ): FetchNewsArticlesUseCase {
     override suspend operator fun invoke(): NewsResult {

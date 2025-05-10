@@ -1,9 +1,7 @@
 package com.adrielmadrigal.androidnews.module
 
-import com.adrielmadrigal.androidnews.BuildConfig
 import com.adrielmadrigal.androidnews.domain.repository.NewsRepository
-import com.adrielmadrigal.androidnews.domain.repository.impl.ProductionNewsRepository
-import com.adrielmadrigal.androidnews.domain.repository.impl.TestingNewsRepository
+import com.adrielmadrigal.androidnews.domain.repository.impl.DefaultNewsRepository
 import com.adrielmadrigal.androidnews.services.manager.NewsApiManager
 import dagger.Module
 import dagger.Provides
@@ -18,7 +16,7 @@ class RepositoryModule {
     @Provides
     @Singleton
     fun providesNewsRepository(apiManager: NewsApiManager): NewsRepository {
-        return ProductionNewsRepository(apiManager)
+        return DefaultNewsRepository(apiManager)
 //        return if (BuildConfig.DEBUG) {
 //            ProductionNewsRepository(apiManager)
 //        } else {
