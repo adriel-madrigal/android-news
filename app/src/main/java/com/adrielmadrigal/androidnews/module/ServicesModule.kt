@@ -2,7 +2,7 @@ package com.adrielmadrigal.androidnews.module
 
 import com.adrielmadrigal.androidnews.services.apiservice.NewsApiService
 import com.adrielmadrigal.androidnews.services.manager.NewsApiManager
-import com.adrielmadrigal.androidnews.services.manager.impl.ProductionNewsApiManager
+import com.adrielmadrigal.androidnews.services.manager.impl.DefaultNewsApiManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,6 +16,6 @@ class ServicesModule {
     @Provides
     @Singleton
     fun providesNewsApiManager(newsApiService: NewsApiService): NewsApiManager {
-        return ProductionNewsApiManager(newsApiService)
+        return DefaultNewsApiManager(newsApiService)
     }
 }

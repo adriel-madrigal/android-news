@@ -4,7 +4,6 @@ import com.adrielmadrigal.androidnews.domain.models.FullNews
 import com.adrielmadrigal.androidnews.services.NewsResult
 import com.adrielmadrigal.androidnews.services.manager.NewsApiManager
 import io.mockk.coEvery
-import io.mockk.every
 import io.mockk.impl.annotations.MockK
 import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
@@ -13,7 +12,7 @@ import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Test
 
-class ProductionNewsRepositoryTest {
+class DefaultNewsRepositoryTest {
 
     @MockK
     private lateinit var mockNewsApiManager: NewsApiManager
@@ -32,19 +31,19 @@ class ProductionNewsRepositoryTest {
     @Test
     fun `given a newsApiManager when create a ProductionNewsRepository then return ProductionNewsRepository is not null`() {
         // When
-        val productionNewsRepository = ProductionNewsRepository(mockNewsApiManager)
+        val defaultNewsRepository = DefaultNewsRepository(mockNewsApiManager)
 
         // Then
-        assertNotNull(productionNewsRepository)
+        assertNotNull(defaultNewsRepository)
     }
 
     @Test
     fun `given a ProductionNewsRepository when fetchNews is called then return NewsResult`() = runTest {
         // Given
-        val productionNewsRepository = ProductionNewsRepository(mockNewsApiManager)
+        val defaultNewsRepository = DefaultNewsRepository(mockNewsApiManager)
 
         // When
-        val result = productionNewsRepository.fetchNews()
+        val result = defaultNewsRepository.fetchNews()
 
         // Then
         assertEquals(NewsResult.Success(fullNews), result)

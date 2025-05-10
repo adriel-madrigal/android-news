@@ -16,7 +16,7 @@ import org.junit.Before
 import org.junit.Test
 import retrofit2.Response
 
-class ProductionNewsApiManagerTest {
+class DefaultNewsApiManagerTest {
 
     @MockK
     private lateinit var mockNewsApiService: NewsApiService
@@ -30,10 +30,10 @@ class ProductionNewsApiManagerTest {
     fun `given a NewsApiService when create a ProductionNewsApiManager then return ProductionNewsApiManager is not null`( ) {
         // When
         mockNewsApiService = mockk<NewsApiService>()
-        val productionNewsApiManager = ProductionNewsApiManager(mockNewsApiService)
+        val defaultNewsApiManager = DefaultNewsApiManager(mockNewsApiService)
 
         // Then
-        assertNotNull(productionNewsApiManager)
+        assertNotNull(defaultNewsApiManager)
     }
 
     @Test
@@ -49,10 +49,10 @@ class ProductionNewsApiManagerTest {
         mockNewsApiService = mockk<NewsApiService>() {
             coEvery { fetchRandom(ofType(), ofType(), ofType(), ofType(), ofType(),) } returns mockResponseSuccess
         }
-        val productionNewsApiManager = ProductionNewsApiManager(mockNewsApiService)
+        val defaultNewsApiManager = DefaultNewsApiManager(mockNewsApiService)
 
         // When
-        val newsResult = productionNewsApiManager.fetchRandomNews()
+        val newsResult = defaultNewsApiManager.fetchRandomNews()
 
         // Then
         assertEquals(NewsResult.Success(fullNews), newsResult)
@@ -71,10 +71,10 @@ class ProductionNewsApiManagerTest {
         mockNewsApiService = mockk<NewsApiService>() {
             coEvery { fetchRandom(ofType(), ofType(), ofType(), ofType(), ofType(),) } returns mockResponseSuccess
         }
-        val productionNewsApiManager = ProductionNewsApiManager(mockNewsApiService)
+        val defaultNewsApiManager = DefaultNewsApiManager(mockNewsApiService)
 
         // When
-        val newsResult = productionNewsApiManager.fetchRandomNews()
+        val newsResult = defaultNewsApiManager.fetchRandomNews()
 
         // Then
         val expectedErrorMessage = "Failed request: Response body is null"
@@ -94,10 +94,10 @@ class ProductionNewsApiManagerTest {
         mockNewsApiService = mockk<NewsApiService>() {
             coEvery { fetchRandom(ofType(), ofType(), ofType(), ofType(), ofType(),) } returns mockResponseSuccess
         }
-        val productionNewsApiManager = ProductionNewsApiManager(mockNewsApiService)
+        val defaultNewsApiManager = DefaultNewsApiManager(mockNewsApiService)
 
         // When
-        val newsResult = productionNewsApiManager.fetchRandomNews()
+        val newsResult = defaultNewsApiManager.fetchRandomNews()
 
         // Then
         val expectedErrorMessage = "Failed to fetch news: 400"
