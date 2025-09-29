@@ -1,6 +1,7 @@
 package com.adrielmadrigal.androidnews.services.manager.impl
 
 import com.adrielmadrigal.androidnews.data.models.dtos.FullNewsDto
+import com.adrielmadrigal.androidnews.domain.usecases.GetLatestDateUseCase
 import com.adrielmadrigal.androidnews.services.NewsResult
 import com.adrielmadrigal.androidnews.services.apiservice.NewsApiService
 import com.adrielmadrigal.androidnews.services.manager.NewsApiManager
@@ -11,7 +12,8 @@ import javax.inject.Singleton
 
 @Singleton
 class DefaultNewsApiManager @Inject constructor(
-    private val newsApiService: NewsApiService
+    private val newsApiService: NewsApiService,
+    private val getLatestDateUseCase: GetLatestDateUseCase,
 ): NewsApiManager {
     companion object {
         const val API_BASE_URL = "https://newsapi.org/v2/"
@@ -22,7 +24,7 @@ class DefaultNewsApiManager @Inject constructor(
          return withContext(Dispatchers.IO) {
              val result = newsApiService.fetchRandom(
                  "Apple",
-                 "2025-05-07",
+                 getLatestDateUseCase(),
                  "popularity",
                  API_KEY,
                  15)

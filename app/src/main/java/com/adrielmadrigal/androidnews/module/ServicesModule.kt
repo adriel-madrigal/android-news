@@ -1,5 +1,6 @@
 package com.adrielmadrigal.androidnews.module
 
+import com.adrielmadrigal.androidnews.domain.usecases.GetLatestDateUseCase
 import com.adrielmadrigal.androidnews.services.apiservice.NewsApiService
 import com.adrielmadrigal.androidnews.services.manager.NewsApiManager
 import com.adrielmadrigal.androidnews.services.manager.impl.DefaultNewsApiManager
@@ -15,7 +16,10 @@ class ServicesModule {
 
     @Provides
     @Singleton
-    fun providesNewsApiManager(newsApiService: NewsApiService): NewsApiManager {
-        return DefaultNewsApiManager(newsApiService)
+    fun providesNewsApiManager(
+        newsApiService: NewsApiService,
+        getLatestDateUseCase: GetLatestDateUseCase
+    ): NewsApiManager {
+        return DefaultNewsApiManager(newsApiService, getLatestDateUseCase)
     }
 }
